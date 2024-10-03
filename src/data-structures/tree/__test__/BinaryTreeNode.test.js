@@ -94,6 +94,8 @@ describe('BinaryTreeNode', () => {
     expect(rootNode.right.right).toBeNull();
     expect(rootNode.traverseInOrder()).toEqual([1, 2, 5]);
 
+    expect(replacementNode.parent).toBe(rootNode);
+
     expect(rootNode.replaceChild(rootNode.right, rootNode.right.right)).toBe(false);
     expect(rootNode.traverseInOrder()).toEqual([1, 2, 5]);
 
@@ -102,6 +104,8 @@ describe('BinaryTreeNode', () => {
 
     expect(rootNode.replaceChild(rootNode.left, replacementNode)).toBe(true);
     expect(rootNode.traverseInOrder()).toEqual([5, 2, 5]);
+
+    expect(replacementNode.parent).toBe(rootNode);
 
     expect(rootNode.replaceChild(new BinaryTreeNode(), new BinaryTreeNode())).toBe(false);
   });

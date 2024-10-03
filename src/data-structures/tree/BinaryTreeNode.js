@@ -160,23 +160,25 @@ export default class BinaryTreeNode {
    * @param {BinaryTreeNode} replacementNode
    * @return {boolean}
    */
-  replaceChild(nodeToReplace, replacementNode) {
-    if (!nodeToReplace || !replacementNode) {
-      return false;
-    }
-
-    if (this.left && this.nodeComparator.equal(this.left, nodeToReplace)) {
-      this.left = replacementNode;
-      return true;
-    }
-
-    if (this.right && this.nodeComparator.equal(this.right, nodeToReplace)) {
-      this.right = replacementNode;
-      return true;
-    }
-
+  replaceChild(nodeToReplace, replacementNode){ 
+  if (!nodeToReplace || !replacementNode) {
     return false;
   }
+
+  if (this.left && this.left === nodeToReplace) {
+    this.left = replacementNode;
+    replacementNode.parent = this;
+    return true;
+  }
+
+  if (this.right && this.right === nodeToReplace) {
+    this.right = replacementNode;
+    replacementNode.parent = this;
+    return true;
+  }
+
+  return false;
+}
 
   /**
    * @param {BinaryTreeNode} sourceNode
